@@ -50,7 +50,7 @@ public class BibApp {
 //        运行App逻辑方法入口
         show_info();
         while (true) {
-            System.out.println("请输入数字进行操作，如需重新查看数字功能请按9");
+            System.out.println("Please enter the number to operate, if you need to check the number function again, press 9");
             Scanner sc = new Scanner(System.in);
             int option_num = sc.nextInt();
             if (option_num == 1) {
@@ -71,30 +71,30 @@ public class BibApp {
             } else if (option_num == 9) {
                 show_info();
             } else {
-                System.out.println("请选择一个有效的选项！");
+                System.out.println("Please select a valid option!");
             }
         }
     }
 
     public static void show_info() {
         System.out.println("===============================");
-        System.out.println("欢迎来到Biblioteca线上图书馆");
-        System.out.println("这是一个选项清单");
-        System.out.println("如果选1，则获得书单信息");
-        System.out.println("如果选2，则开始预订书籍");
-        System.out.println("如果选3，则显示已预订书籍名单");
-        System.out.println("如果选4，进入结账界面");
-        System.out.println("如果选5，还书界面");
-        System.out.println("如果输入100，显示您的个人信息");
-        System.out.println("如果选0，则退出");
+        System.out.println("Welcome to Biblioteca Online Library");
+        System.out.println("This is a list of options");
+        System.out.println("If you choose 1, get the book list information");
+        System.out.println("If you choose 2, then book books");
+        System.out.println("If you choose 3, the list of booked books will be displayed");
+        System.out.println("If you choose 4, enter the checkout interface");
+        System.out.println("If you choose 5, the book return interface");
+        System.out.println("If you enter 100, display your personal information");
+        System.out.println("If you choose 0, exit");
     }
 
     public static void option_one(List<Book> booklist) {
 //        对应数字1功能  展示所有书籍的信息
 
-        System.out.println("全部书籍清单为：");
+        System.out.println("The list of all books is:");
         for (Book book : booklist) {
-            System.out.println("书籍名称：" + book.getTittle() + " 作者：" + book.getAuthor() + " 出版日期：" + book.getPubYear());
+            System.out.println("Book title：" + book.getTittle() + " Author:" + book.getAuthor() + " Publication date:" + book.getPubYear());
         }
     }
 
@@ -103,7 +103,7 @@ public class BibApp {
 
 //        预订书籍--根据输入的书籍名称
         while (true) {
-            System.out.println("请输入您想预订的书名，按数字0返回上一层");
+            System.out.println("Please enter the title of the book you want to book, press the number 0 to return to the previous level");
             Scanner sc = new Scanner(System.in);
             String bookname = sc.nextLine();
             if (bookname.equals("0")) {
@@ -114,7 +114,7 @@ public class BibApp {
                 if (bookname.equals(book.getTittle())) {
                     pickup_booklist.add(book);
                     bookList.remove(book);
-                    System.out.println("您已成功预定" + book.getTittle() + "，该书已经加入您的预定书单");
+                    System.out.println("You have successfully booked" + book.getTittle() + "，The book has been added to your book list");
                     Flag = "true";
                     break;
                 }
@@ -122,7 +122,7 @@ public class BibApp {
             if (Flag.equals("true")) {
                 return;
             } else {
-                System.out.println("请输入正确的书籍名称，当前书籍不可预订");
+                System.out.println("Please enter the correct book name, the current book cannot be reserved");
             }
         }
     }
@@ -130,9 +130,9 @@ public class BibApp {
     public static void option_three(List<Book> pickup_booklist) {
 //        对应数字3的功能，展示客户已经预订了的书单
 
-        System.out.println("您的专属预订书单为：");
+        System.out.println("Your exclusive booking list is:");
         for (Book book : pickup_booklist) {
-            System.out.println("书籍名称：" + book.getTittle() + " 作者：" + book.getAuthor() + " 出版日期：" + book.getPubYear());
+            System.out.println("Title of book:" + book.getTittle() + " Author:" + book.getAuthor() + " Publication date：" + book.getPubYear());
         }
     }
 
@@ -144,10 +144,10 @@ public class BibApp {
          * 4.显示结账成功消息
          * 5.显示结账失败消息*/
         while (true) {
-            System.out.println("欢迎来到结账页面，下面是您的预订书籍列表清单");
+            System.out.println("Welcome to the checkout page, below is your book list list");
 
             option_three(pickup_booklist);
-            System.out.println("请输入您想结账的书籍名称,按0返回初始界面");
+            System.out.println("Please enter the name of the book you want to check out, press 0 to return to the initial interface");
             Scanner sc = new Scanner(System.in);
             String bookname = sc.nextLine();
             String Flag = "";
@@ -156,10 +156,10 @@ public class BibApp {
             }
             for (Book book : pickup_booklist) {
                 if (bookname.equals(book.getTittle())) {
-                    System.out.println("您已经成功将" + book.getTittle() + "添加至已购买列表");
+                    System.out.println("You have successfully" + book.getTittle() + "Add to purchased list");
                     boughtbook.add(book);
                     pickup_booklist.remove(book);
-                    System.out.println("您已经成功订购的图书列表");
+                    System.out.println("List of books you have successfully ordered");
                     for (Book b : boughtbook) {
                         System.out.println(b.getTittle());
                     }
@@ -170,7 +170,7 @@ public class BibApp {
             if (Flag.equals("true")) {
                 return;
             } else {
-                System.out.println("抱歉，这本书不可用，请检查是否存在拼写错误，或者重新选择书籍");
+                System.out.println("Sorry, this book is unavailable, please check for spelling errors, or select the book again");
             }
         }
     }
@@ -183,12 +183,12 @@ public class BibApp {
          * 4. 通知客户失败，请重新检查书籍名称和图书馆*/
         while (true) {
             String Flag = "";
-            System.out.println("这是您的已购买书籍清单");
+            System.out.println("This is your list of purchased books");
 
             for (Book book : boughtbooklist) {
                 System.out.println(book.getTittle());
             }
-            System.out.println("请输入想要结账的书籍名称,按数字0返回初始界面");
+            System.out.println("Please enter the name of the book you want to check out, press the number 0 to return to the initial interface");
             Scanner sc = new Scanner(System.in);
             String bookname = sc.nextLine();
             if (bookname.equals("0")) {
@@ -196,7 +196,7 @@ public class BibApp {
             }
             for (Book book : boughtbooklist) {
                 if (bookname.equals(book.getTittle())) {
-                    System.out.println("您已经成功将该图书归还，欢迎下次光临");
+                    System.out.println("You have successfully returned the book, welcome to visit next time");
                     Flag = "true";
                     boughtbooklist.remove(book);
                     booklist.add(book);
@@ -206,26 +206,26 @@ public class BibApp {
             if (Flag.equals("true")) {
                 return;
             } else {
-                System.out.println("请检查您输入的书籍名称是否正确，或者是否属于该图书馆");
+                System.out.println("Please check if the book name you entered is correct or if it belongs to the library");
             }
         }
     }
 
     public static void option_hundred(User user){
-        System.out.println("您的个人信息如下");
-        System.out.println("姓名："+user.getName());
-        System.out.println("电话："+ user.getPhone_num());
-        System.out.println("电子邮箱：" + user.getEmail());
+        System.out.println("Your personal information is as follows");
+        System.out.println("Name："+user.getName());
+        System.out.println("TEL："+ user.getPhone_num());
+        System.out.println("E-mail：" + user.getEmail());
     }
 
     public static void login_system(List<User> userlist,List<Book> booklist, List<Movie> movielist) {
 
         while (true){
-            System.out.println("欢迎来到Bibllioteca图书馆，请输入您的用户名密码名进行登录验证");
-            System.out.println("请输入您的用户名：");
+            System.out.println("Welcome to Bibllioteca Library, please enter your username and password for login verification");
+            System.out.println("Please enter your username:");
             Scanner sc = new Scanner(System.in);
             String account = sc.nextLine();
-            System.out.println("请输入您的密码：");
+            System.out.println("please enter your password:");
             Scanner sc1 = new Scanner(System.in);
             String password = sc1.nextLine();
             String Flag = "";
@@ -238,7 +238,7 @@ public class BibApp {
                     Flag = "true";
                     if(user.getPassword().equals(password)){
 //                        如果账号和密码匹配成功，则成功登陆，并显示成功信息
-                        System.out.println("尊敬的"+user.getName()+"您好，您已经成功登陆图书馆在线系统");
+                        System.out.println("Dear"+user.getName()+"Hello, you have successfully logged in the library online system");
 //                        此时将执行图书馆管理界面
 //                        这里将进行登录后的功能
                         // TODO: 2020/8/5
@@ -246,14 +246,14 @@ public class BibApp {
                         run(booklist,user,movielist);
                     }else {
 //                        密码输入错误的话 将重新输入用户名和密码
-                        System.out.println("用户名与密码不匹配，请重新输入用户名和密码");
+                        System.out.println("The username and password do not match, please re-enter the username and password");
                     }
                 }
             }
 //            账号不存在，重新输入
             if(Flag.equals("true")){
             }else {
-                System.out.println("您输入的用户名不存在，请重新输入正确的用户名");
+                System.out.println("The username you entered does not exist, please re-enter the correct username");
             }
         }
 
